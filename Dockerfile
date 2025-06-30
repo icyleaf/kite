@@ -12,6 +12,11 @@ RUN pnpm run build
 
 FROM golang:1.24-alpine AS backend-builder
 
+ARG TARGETOS
+ARG TARGETARCH
+ENV GOOS=$TARGETOS
+ENV GOARCH=$TARGETARCH
+
 WORKDIR /app
 
 COPY go.mod ./
